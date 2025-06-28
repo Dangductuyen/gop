@@ -111,8 +111,8 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import requests
 CURRENT_VERSION = "1.0.0"
-VERSION_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/version.txt"
-TOOL_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/gop.py"
+VERSION_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/version.txt"
+TOOL_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/gop.py"
 LOCAL_FILE = sys.argv[0]
 
 def check_for_update():
@@ -258,7 +258,7 @@ thanhngang(65)
 
 print(f"\033[1;39m[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m1\033[1;39m]\033[1;32m Tool Buff View TikTok \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Proxy Nhanh Die \033[1;39m]\n"
       f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m2\033[1;39m]\033[1;32m Tool Spam Sms \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Spam Tin Nhắn Rác \033[1;39m]\n"
-      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m3\033[1;39m]\033[1;32m Tool Golike Twitter ( X ) \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m demo \033[1;39m]"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m3\033[1;39m]\033[1;32m Tool Golike Twitter ( X ) \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Cookie VIP \033[1;39m]"
 )
 thanhngang(65)
 
