@@ -110,37 +110,57 @@ from faker import Faker
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import requests
-CURRENT_VERSION = "1.0.0"
-VERSION_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/version.txt"
 TOOL_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/gop.py"
-LOCAL_FILE = sys.argv[0]
+VERSION_FILE_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/version.txt"
+LOCAL_FILE = "gop.py"
+LOCAL_VERSION_FILE = "version.txt"
 
-def check_for_update():
+def get_local_version():
     try:
-        response = requests.get(VERSION_URL, timeout=5)
-        latest_version = response.text.strip()
-        if latest_version != CURRENT_VERSION:
-            print(f"\n\033[1;33m🔄 Có bản cập nhật mới: {latest_version} (hiện tại: {CURRENT_VERSION})")
-            input("\033[1;32mNhấn Enter để cập nhật...")
-            update_tool()
-    except Exception as e:
-        print(f"\033[1;31mLỗi kiểm tra update: {e}")
+        with open(LOCAL_VERSION_FILE, "r") as f:
+            return f.read().strip()
+    except FileNotFoundError:
+        return "0.0.0"
+
+def get_remote_version():
+    try:
+        response = requests.get(VERSION_FILE_URL)
+        if response.ok:
+            return response.text.strip()
+    except:
+        pass
+    return None
 
 def update_tool():
     try:
         response = requests.get(TOOL_URL)
-        if response.ok:
+        version_response = requests.get(VERSION_FILE_URL)
+        if response.ok and version_response.ok:
             with open(LOCAL_FILE, "wb") as f:
                 f.write(response.content)
+            with open(LOCAL_VERSION_FILE, "w") as f:
+                f.write(version_response.text.strip())
             print("\033[1;32m✅ Đã cập nhật tool thành công! Đang khởi động lại...\n")
             sleep(1)
             os.execv(sys.executable, ['python'] + sys.argv)
         else:
-            print("\033[1;31m❌ Không thể tải tool mới từ GitHub.")
+            print("\033[1;31m❌ Không thể tải file cập nhật.")
     except Exception as e:
         print(f"\033[1;31mLỗi khi cập nhật: {e}")
 
-check_for_update()
+def main():
+    local_version = get_local_version()
+    remote_version = get_remote_version()
+
+    if remote_version and remote_version != local_version:
+        print(f"\033[1;33m🔄 Có bản cập nhật mới: {remote_version} (hiện tại: {local_version})")
+        input("Nhấn Enter để cập nhật...")
+        update_tool()
+    else:
+        print(f"\033[1;32m✅ Đang dùng phiên bản mới nhất: {local_version}")
+        # Gọi tool thật ở đây
+        # Ví dụ: gọi hàm chính hoặc in hướng dẫn
+        print("🚀 Tool đã sẵn sàng sử dụng!")
 
 trang = "\033[1;37m\033[1m"
 xanh_la = "\033[1;32m\033[1m"
