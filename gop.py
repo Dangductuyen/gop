@@ -111,8 +111,8 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 import requests
 CURRENT_VERSION = "1.0.0"
-VERSION_URL = "https://raw.githubusercontent.com/yourusername/yourrepo/main/version.txt"
-TOOL_URL = "https://raw.githubusercontent.com/yourusername/yourrepo/main/tool.py"
+VERSION_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/version.txt"
+TOOL_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/gop.py"
 LOCAL_FILE = sys.argv[0]
 
 def check_for_update():
