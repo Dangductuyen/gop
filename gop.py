@@ -311,7 +311,7 @@ if chon == "1":
 if chon == "2":
      exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/view/refs/heads/main/spam.py').text)
 if chon == "3":
-	exec(requests.get('https://raw.githubusercontent.com/Phuocnifepkay/uhgcc/refs/heads/main/Ggttttttttttttttrtttfcvyu88ibb.py').text)
+	exec(requests.get('https://raw.githubusercontent.com/Phuocnifepkay/uhgcc/refs/s/main/Ggttttttttttttttrtttfcvyu88ibb.py').text)
 # if chon == 
 
     
