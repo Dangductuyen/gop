@@ -1,169 +1,43 @@
-from time import sleep
-import sys
-from colorama import Fore, Back, Style
-import random
-import random
-import sys
 import os
+import re
 import sys
 import time
 import json
-import os
-import sys
-import time
-import random
-import requests
-import subprocess
 import uuid
-import hashlib
-from collections import defaultdict    
-from datetime import datetime, timedelta, timezone 
+import base64
+import socket
+import string
+import random
+import threading
+import subprocess
+from time import sleep
+from datetime import datetime, timedelta
+from collections import defaultdict
+from concurrent.futures import ThreadPoolExecutor
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+from bs4 import BeautifulSoup
+from pytz import timezone
+from colorama import Fore, Back, Style, init
+from pystyle import Colors, Colorate
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
-from rich import box
-from colorama import init
-from pystyle import Colors, Colorate   
+from rich import box, print as rprint
+from rich.prompt import Prompt
+from rich.table import Table
 from rich.columns import Columns
 from rich.segment import Segment
 from rich.measure import Measurement
-import random
-import string
-import requests
-import base64
-import subprocess
-import uuid
-import hashlib
-from collections import defaultdict    
-from datetime import datetime, timedelta
-from rich.console import Console
-from rich.panel import Panel
-from rich.text import Text
-from rich import box
-from colorama import init
-from pystyle import Colors, Colorate
-from time import sleep
-from colorama import Fore, Back, Style
-import random
-import sys
-import os
-from rich.console import Console
-from rich.panel import Panel
-from rich import print as rprint
-from rich.prompt import Prompt
-from time import sleep
-from colorama import Fore, Back, Style
-import random
-import sys
-from time import sleep
-from colorama import Fore, Back, Style
-import requests
-import json
-from colorama import Fore, Style
-from datetime import datetime, timedelta
-from pytz import timezone
-import requests
-import time
-import json
-import sys
-import random
-import string
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-import threading
-from threading import BoundedSemaphore
-import threading
-import base64
-import os
-import time
-import re
-import json
-import random
-import requests
-import socket
-import sys
-from time import sleep
-from datetime import datetime, timedelta
-from bs4 import BeautifulSoup
-from concurrent.futures import ThreadPoolExecutor
-from time import sleep
-from datetime import datetime, timedelta
-import os
 try:
     from faker import Faker
     from Crypto.Cipher import AES
     from Crypto.Util.Padding import pad
-    import requests
-    from rich.table import Table
-    from rich.panel import Panel
-    from rich import box
-    from colorama import init, Fore
-    from rich.console import Console
 except ImportError:
     os.system('pip install Faker')
-    os.system('pip install requests')
     os.system('pip install pycryptodome')
-    
-    
-# import lại sau khi cài đặt
-from faker import Faker
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
-import requests
-TOOL_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/gop.py"
-VERSION_FILE_URL = "https://raw.githubusercontent.com/Dangductuyen/gop/main/version.txt"
-LOCAL_FILE = "gop.py"
-LOCAL_VERSION_FILE = "version.txt"
-
-def get_local_version():
-    try:
-        with open(LOCAL_VERSION_FILE, "r") as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        return "0.0.0"
-
-def get_remote_version():
-    try:
-        response = requests.get(VERSION_FILE_URL)
-        if response.ok:
-            return response.text.strip()
-    except:
-        pass
-    return None
-
-def update_tool():
-    try:
-        response = requests.get(TOOL_URL)
-        version_response = requests.get(VERSION_FILE_URL)
-        if response.ok and version_response.ok:
-            with open(LOCAL_FILE, "wb") as f:
-                f.write(response.content)
-            with open(LOCAL_VERSION_FILE, "w") as f:
-                f.write(version_response.text.strip())
-            print("\033[1;32m✅ Đã cập nhật tool thành công!")
-            print("\033[1;33m💡 Vui lòng khởi động lại tool thủ công.")
-            sleep(2)
-            # Tự động thoát (giống Ctrl + C)
-            os._exit(0)  # kết thúc chương trình ngay lập tức
-        else:
-            print("\033[1;31m❌ Không thể tải file cập nhật.")
-    except Exception as e:
-        print(f"\033[1;31mLỗi khi cập nhật: {e}")
-
-def main():
-    local_version = get_local_version()
-    remote_version = get_remote_version()
-
-    if remote_version and remote_version != local_version:
-        print(f"\033[1;33m🔄 Có bản cập nhật mới: {remote_version} (hiện tại: {local_version})")
-        input("Nhấn Enter để cập nhật...")
-        update_tool()
-    else:
-        print(f"\033[1;32m✅ Đang dùng phiên bản mới nhất: {local_version}")
-        # Gọi tool thật ở đây
-        # Ví dụ: gọi hàm chính hoặc in hướng dẫn
-        print("🚀 Tool đã sẵn sàng sử dụng!")
-
+    os.system('pip install requests')
 trang = "\033[1;37m\033[1m"
 xanh_la = "\033[1;32m\033[1m"
 xanh_duong = "\033[1;34m\033[1m"
@@ -197,38 +71,7 @@ def thanhngang(so):
     for i in range(so):
         print(trang+'\033[1;31m-',end ='')
     print('')
-    
-os.system('cls' if os.name == 'nt' else 'clear')
-print(">> Loading...")
-sleep(1)
-os.system('cls' if os.name == 'nt' else 'clear')
-def xoss(z):
-    for e in z + '\n':
-        sys.stdout.write(e)
-        sys.stdout.flush()
-        time.sleep(0.005)
-xoss("\n\033[1;32mVui Lòng Chờ... ")
-sleep(1.5)
-os.system('cls' if os.name == 'nt' else 'clear')
-for i in range(1, 101):
-  sys.stdout.write(f"\r{BOLD}{LIME}ĐANG LOAD TOOL + GIT +: [{i}% {'█' * (i // 2)}]{RESET}")
-  sys.stdout.flush()
-  sleep(0.03)  # Điều chỉnh thời gian chờ nếu cần
-sleep(1)
-import os
 os.system("cls" if os.name == "nt" else "clear")
-def xoss(z):
-    for e in z + '\n':
-        sys.stdout.write(e)
-        sys.stdout.flush()
-        time.sleep(0.005)
-xoss('\n\033[1;32m[●] \033[93mĐang \033[96mLoad \033[95mAPI \033[94mTool...');time.sleep(0.10)
-xoss('\n\033[1;36m[●] \033[94mkiểm \033[93mtra \033[95msever \033[96mtool...')
-xoss('\n\033[1;33m[●] \033[96mkiểm \033[95mtra \033[94mbản \033[93mupdate.. ')
-xoss('\n\033[1;34m[●] \033[91mTiến \033[96mhành \033[94mvào \033[95mtool...')
-def Update():
-    exit('\033[1;31m[●] Đang Tiến Hành Vào Tool...... ')
-
 sleep(1)
 colors = [
     "\033[1;37m\033[1m",  # Trắng
@@ -244,6 +87,33 @@ colors = [
 
 os.system('cls' if os.name == 'nt' else 'clear')
 banner = f"""\033[1;32m
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠤⠶⠴⢶⣶⣤⣤⣤⣕⣶⣼⣿⡀⠀⠀⠀⠀⠀⠀⠀⣿⣏⣶⣶⣤⣤⣤⣶⡶⠦⠤⠄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⢤⣾⣿⣿⣿⡿⣿⣻⣿⠏⠀⠀⠀⢀⡀⠀⠀⠀⢹⣿⢟⣿⢿⣿⣿⣿⣷⣤⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⠀⢀⣠⣤⣾⣿⣿⠿⠟⣫⣥⣤⣍⣶⣽⡿⡄⠀⠀⢰⣿⣿⡄⠀⠀⢠⢏⣏⣾⣹⣤⣬⣝⠻⠿⠿⠿⣷⣤⣀⡀⠀⣄⠀⠀
+⠀⠀⣸⣿⣿⣿⣷⣶⣿⣿⠻⡏⢢⣤⣼⣿⣿⣿⣓⠿⣷⣄⡀⢹⣏⢀⣠⡴⢿⣊⣿⣿⣿⣧⣤⡔⢹⠟⣿⣷⣶⣾⣿⣿⣿⣏⠀⠀
+⠀⢠⢿⣿⡿⢟⣿⣿⣿⣟⡛⠾⣿⡏⠙⢙⢛⢻⣿⣷⣿⣿⣷⣻⣟⣿⣿⣷⣾⢿⡟⠉⣋⠋⢹⣿⡶⢛⣻⣿⣿⣿⡛⢿⣿⡿⡄⠀
+⠠⣯⣾⣿⣤⣿⣍⣤⣤⠔⠓⢶⣾⣿⣿⣶⣿⣿⣄⠀⢹⣿⣿⣿⣿⣿⣿⣏⠁⣰⣿⣿⣷⣿⣿⣷⡶⠂⠠⢤⣤⣽⣿⣦⣿⣷⣜⠀
+⢰⣼⣿⠀⣻⡿⢟⡏⢀⠴⠚⢛⣻⣿⣿⣿⣿⣿⣿⣦⣌⡙⣿⣿⣿⣿⢋⣡⣴⣿⣿⣿⣿⣿⣿⣟⡛⠓⠦⡀⢻⡻⢿⣟⠀⣿⣧⡄
+⢨⢻⣿⢰⡏⣴⡿⠱⠁⢀⠴⠋⣽⣿⣿⣿⣿⣿⡅⠈⠻⠭⣿⣿⣿⣷⠼⠟⠁⢨⣿⣿⣿⣿⣿⣮⡙⠦⡀⠈⠎⢿⡦⠙⡆⣿⡟⡀
+⠈⣧⡙⣷⣄⣸⠆⠀⢠⠋⠀⡜⡽⢻⣿⣿⣿⣿⣿⣆⣀⣀⣸⣿⣿⣇⣀⣀⣰⣿⣿⣿⣿⣿⡟⢮⢣⠀⠘⡄⠀⠐⣇⣠⣾⢋⡼⠁
+⠀⠀⠘⠻⣿⣇⠀⠀⠀⠀⠀⣇⠁⠟⠟⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠻⠿⠈⣼⠀⠀⠀⠀⠀⣸⡿⠗⠋⠀⠀
+⠀⠀⠀⠀⠘⡏⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠟⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠃⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣷⠘⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠃⣾⠂⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠘⠢⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⠟⢹⡏⠻⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠋⠀⢸⡇⠀⠘⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣦⡀⢸⠁⢀⣴⣿⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠿⣿⣾⣷⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⡿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣀⣃⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⣿⣿⣏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣟⠀⡅⢻⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣶⣷⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣟⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ▓█████▄  █    ██  ▄████▄  ▄▄▄█████▓ █    ██▓██   ██▓▓█████  ███▄    █ 
 ▒██▀ ██▌ ██  ▓██▒▒██▀ ▀█  ▓  ██▒ ▓▒ ██  ▓██▒▒██  ██▒▓█   ▀  ██ ▀█   █ 
 ░██   █▌▓██  ▒██░▒▓█    ▄ ▒ ▓██░ ▒░▓██  ▒██░ ▒██ ██░▒███   ▓██  ▀█ ██▒
@@ -265,36 +135,36 @@ console = Console()
 
 os.system('cls' if os.name == 'nt' else 'clear')
 for i in range(1, 101):
-  sys.stdout.write(f"\r{BOLD} \033[38;5;155mĐANG LOAD MENU : [{i}% {'█' * (i // 2)}]{RESET}")
+  sys.stdout.write(f"\r{BOLD} \033[38;5;155mDang Tải : [{i}% {'█' * (i // 2)}]{RESET}")
   sys.stdout.flush()
-  sleep(0.003)  # Điều chỉnh thời gian chờ nếu cần
+  sleep(0.003)
 sleep(1)
 os.system('cls' if os.name == 'nt' else 'clear')
 print(banner)
 print(f"""\033[1;32m
 ╔══════════════════════╗
-║  Tool Hiện có        ║
+║  Version demo        ║
 ╚══════════════════════╝"""
 )
 thanhngang(65)
 
-print(f"\033[1;39m[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m1\033[1;39m]\033[1;32m Tool Buff View TikTok \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Proxy Nhanh Die \033[1;39m]\n"
+print(f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m1\033[1;39m]\033[1;32m Tool Buff View \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Proxy Lỏ Thì Buff Ít \033[1;39m]\n"
       f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m2\033[1;39m]\033[1;32m Tool Spam Sms \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Spam Tin Nhắn Rác \033[1;39m]\n"
-      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m3\033[1;39m]\033[1;32m Tool Golike Twitter ( X ) \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m demo \033[1;39m]"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m3\033[1;39m]\033[1;32m Tool Get Proxy \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Get 9999 Proxy dạng HTTP \033[1;39m]\n"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m4\033[1;39m]\033[1;32m Tool Scan Proxy \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Scan Speed \033[1;39m]\n"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m5\033[1;39m]\033[1;32m Tool Spam Ngl \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Spam Max Vip \033[1;39m]\n"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m6\033[1;39m]\033[1;32m Tool Buff View V2 \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Khá Ổn, Vip Hơn V1 \033[1;39m]\n"
+      f"[\033[1;36m•_•\033[1;39m] => \033[1;32mNhập \033[1;39m[\033[1;35m7\033[1;39m]\033[1;32m Tool Xâm Nhập Website \033[1;39m[\033[32;5;245m\033[1m\033[38;5;39m Deface Website \033[1;39m]"
 )
 thanhngang(65)
-
+print(f"[\033[1;36mVersion 1.0.0")
 chon = input("\033[1;39m[\033[1;36m•_•\033[1;39m] => \033[32;5;245m\033[1m\033[38;5;39mNhập \033[1;33mSố \033[1;34mTool \033[38;5;204mMà \033[38;5;155mBạn \033[1;35mCần \033[1;36mChạy : \033[38;5;204m")  
 
 os.system('cls' if os.name == 'nt' else 'clear')
 for i in range(1, 101):
-  sys.stdout.write(f"\r{BOLD} \033[38;5;204mCHỜ ĐỢI LÀ HẠNH PHÚC: [{i}% {'█' * (i // 2)}]{RESET}")
+  sys.stdout.write(f"\r{BOLD} \033[38;5;204mVui Lòng Chờ : [{i}% {'█' * (i // 2)}]{RESET}")
   sys.stdout.flush()
-  sleep(0.03)  # Điều chỉnh thời gian chờ nếu cần
-  
-
-
-# hàm chống bug mạng tránh mấy a bug lỏd 🤟
+  sleep(0.03)
 def check_internet_connection():
     try:
         response = requests.get("https://google.com/", timeout=5)
@@ -302,7 +172,7 @@ def check_internet_connection():
     except requests.ConnectionError:
         return False
 if not check_internet_connection():
-    print("\033[1;31mCheck Mạng Wifi Hoặc 4G! ")
+    print("\033[1;31m31mlỗi kết nối ! ")
     sleep(0.5)
     exit()
 
@@ -311,7 +181,12 @@ if chon == "1":
 if chon == "2":
      exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/view/refs/heads/main/spam.py').text)
 if chon == "3":
-	exec(requests.get('https://raw.githubusercontent.com/Phuocnifepkay/uhgcc/refs/s/main/Ggttttttttttttttrtttfcvyu88ibb.py').text)
-# if chon == 
-
-    
+	exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/scaner.py').text)
+if chon == "4":
+	exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/checker.py').text)
+if chon == "5":
+	exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/ngl.py').text)
+if chon == "6":
+	exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/viewv2.py').text)
+if chon == "7":
+	exec(requests.get('https://raw.githubusercontent.com/Dangductuyen/gop/refs/heads/main/viewv2.py').text)
