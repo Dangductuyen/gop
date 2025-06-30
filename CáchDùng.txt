@@ -1,0 +1,7 @@
+CÁCH DÙNG TOOL DEFACE
+Bước 1 : Nhập Số 7 để lấy danh sách Website vào file site.txt ( file site.txt tool tự tạo )
+Bước 2 : Khi bạn đã scan được nhiều site về file thì hãy đừng tool, nhập số 8 để lọc web có lỗ hổng
+Bước 3 : Khi tool lọc được web, bạn hãy kiểm tra ở thư mục DucTuyen_Shell.txt, sao chép link và dán vào trình duyệt
+Bước 4 : Sau khi vào được thư mục upload file, hãy up file html của bạn lên, sau đó ghi đường dẫn của web sau đó ghi dấu /kèm tên file html
+ví dụ web mình quét được là ductuyensub.com thì sau khi up code html có tên (tuyen.html) mình sẽ vào url ductuyensub.com/tuyen.html để xem kết quả
+                                                                             Liên Hệ : telegram : @ductuyendev Facebook : https://www.facebook.com/ductuyen.737165
